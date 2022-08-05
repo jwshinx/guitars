@@ -11,6 +11,17 @@ module Api
         render json: GuitarsSerializer.new(guitars).as_json, status: :ok
       end
 
+      def show
+        guitar = Guitar.find(params[:id])
+        render json: GuitarSerializer.new(guitar).as_json, status: :ok
+      end
+
+      def update
+        guitar = Guitar.find(params[:id])
+        guitar.update!(guitar_params)
+        render json: GuitarSerializer.new(guitar).as_json, status: :ok
+      end
+
       private
 
       def guitar_params

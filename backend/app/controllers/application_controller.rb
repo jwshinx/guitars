@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
     render json: { 'message' => e.message, 'detail' => 'something invalid' }, status: :bad_request
   end
 
-  # rescue_from StandardError do |e|
-  #   render json: { 'message' => e.message, 'detail' => 'failure' }, status: :bad_request
-  # end
+  rescue_from StandardError do |e|
+    render json: { 'message' => e.message, 'detail' => 'failure' }, status: :bad_request
+  end
 end
