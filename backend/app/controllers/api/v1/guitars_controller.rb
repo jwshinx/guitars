@@ -2,6 +2,8 @@ module Api
   module V1
     class GuitarsController < ApplicationController
       def create
+        guitar = Guitar.create!(guitar_params)
+        render json: GuitarSerializer.new(guitar).as_json, status: :ok
       end
 
       def index

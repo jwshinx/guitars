@@ -4,10 +4,10 @@ class ApplicationController < ActionController::API
   end
 
   rescue_from ActiveRecord::RecordInvalid do |e|
-    render json: { 'message' => e.message, 'detail' => 'something invalid' }, status: :bad_rquest
+    render json: { 'message' => e.message, 'detail' => 'something invalid' }, status: :bad_request
   end
 
-  rescue_from StandardError do |e|
-    render json: { 'message' => e.message, 'detail' => 'failure' }, status: :bad_rquest
-  end
+  # rescue_from StandardError do |e|
+  #   render json: { 'message' => e.message, 'detail' => 'failure' }, status: :bad_request
+  # end
 end
