@@ -22,7 +22,6 @@ curl -X PUT -H 'Content-Type: application/json' -d '{"price":"1400"}' "http://lo
 
 DELETE Guitar
 curl -X DELETE "http://localhost:3000/api/v1/guitars/4"
-
 ```
 
 ## Todos
