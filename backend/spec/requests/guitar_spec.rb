@@ -19,7 +19,7 @@ describe 'Guitar', type: :request do
 
         randon_number = 333
         delete "/api/v1/guitars/#{guitar.id + randon_number}"
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:not_found)
         data = JSON.parse(response.body)
         expect(data['message']).to match(/Couldn't find Guitar/)
       end
@@ -33,7 +33,7 @@ describe 'Guitar', type: :request do
 
         random_number = 333
         put "/api/v1/guitars/#{guitar.id + random_number}"
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:not_found)
         data = JSON.parse(response.body)
         expect(data['message']).to match(/Couldn't find Guitar/)
       end
@@ -64,7 +64,7 @@ describe 'Guitar', type: :request do
 
         random_number = 333
         get "/api/v1/guitars/#{guitar.id + random_number}"
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:not_found)
         data = JSON.parse(response.body)
         expect(data['message']).to match(/Couldn't find Guitar/)
       end
