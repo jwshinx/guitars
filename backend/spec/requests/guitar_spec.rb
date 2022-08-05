@@ -1,6 +1,31 @@
 require 'rails_helper'
 
 describe 'Guitar', type: :request do
+  describe 'DELETE /api/v1/guitars/:id' do
+    context 'given valid id' do
+      it 'should destroy guitar' do
+        guitar = create(:guitar, name: 'fender 123', price: 500)
+
+        delete "/api/v1/guitars/#{guitar.id}"
+        expect(response).to have_http_status(:ok)
+        data = JSON.parse(response.body)
+        expect(data).to eq({})
+      end
+    end
+
+    context 'given invalid id' do
+      it 'should not destroy guitar' do
+        guitar = create(:guitar, name: 'fender 123', price: 500)
+
+        randon_number = 333
+        delete "/api/v1/guitars/#{guitar.id + randon_number}"
+        expect(response).to have_http_status(:bad_request)
+        data = JSON.parse(response.body)
+        expect(data['message']).to match(/Couldn't find Guitar/)
+      end
+    end
+  end
+
   describe 'PUT /api/v1/guitars/:id' do
     context 'given invalid id' do
       it 'should not update guitar' do

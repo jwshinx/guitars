@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 describe '/api/v1/guitars', type: :routing do
+  describe 'DELETE /api/v1/guitars/:id' do
+    it 'should route to guitars#update' do
+      guitar = create(:guitar)
+      expect(:delete => "/api/v1/guitars/#{guitar.id}").to route_to(
+        {
+          controller: 'api/v1/guitars',
+          action: 'destroy',
+          id: guitar.id.to_s
+        }
+      )
+    end
+  end
+
   describe 'PUT /api/v1/guitars/:id' do
     it 'should route to guitars#update' do
       guitar = create(:guitar)
