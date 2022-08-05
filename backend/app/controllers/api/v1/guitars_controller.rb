@@ -1,6 +1,8 @@
 module Api
   module V1
     class GuitarsController < ApplicationController
+      include Autographable
+
       def create
         guitar = Guitar.create!(guitar_params)
         render json: GuitarSerializer.new(guitar).as_json, status: :ok
@@ -8,6 +10,8 @@ module Api
 
       def index
         guitars = Guitar.all
+
+        guitars.each{|g| puts "+++> autographed!: #{apply_elvis(g.name)}"}
         render json: GuitarsSerializer.new(guitars).as_json, status: :ok
       end
 
