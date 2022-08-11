@@ -8,7 +8,8 @@ class UnitsSerializer
       {
         id: unit.id,
         guitar_name: unit.guitar.name,
-        store_name: unit.store.name
+        store_name: unit.store.name,
+        quantity: unit.quantity
       }
     end
   end

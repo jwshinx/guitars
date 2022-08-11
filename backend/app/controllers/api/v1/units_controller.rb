@@ -32,7 +32,7 @@ module Api
       private
 
       def unit_params
-        params.require(:unit).permit(:guitar_id, :store_id)
+        params.require(:unit).permit(:guitar_id, :store_id, :quantity)
       end
     end
   end

@@ -6,6 +6,7 @@ class UnitSerializer
   def as_json
     {
       id: unit.id,
+      quantity: unit.quantity,
       guitar: {
         name: unit.guitar.name,
         price: unit.guitar.price
