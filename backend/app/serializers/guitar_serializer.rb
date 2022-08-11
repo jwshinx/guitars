@@ -7,7 +7,10 @@ class GuitarSerializer
     {
       id: guitar.id,
       name: guitar.name,
-      price: guitar.price
+      price: guitar.price,
+      stores: guitar.stores.each_with_object([]) do |store, arr|
+        arr << { id: store.id, name: store.name, active: store.active }
+      end
     }
   end
 
