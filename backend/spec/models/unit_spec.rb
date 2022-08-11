@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Unit, type: :model do
-  describe 'given valid unit' do
-    let!(:guitar) { create(:guitar) }
-    let!(:store) { create(:store) }
+  let!(:guitar) { create(:guitar) }
+  let!(:store) { create(:store) }
 
+  describe 'given valid unit' do
     it 'should be valid' do
       unit = build(:unit, guitar: guitar, store: store, quantity: 2)
       expect(unit).to be_valid
@@ -12,8 +12,6 @@ RSpec.describe Unit, type: :model do
   end
 
   describe 'given unit with no store reference' do
-    let!(:guitar) { create(:guitar) }
-
     it 'should not be valid' do
       unit = build(:unit, guitar: guitar)
       expect(unit).not_to be_valid
@@ -22,8 +20,6 @@ RSpec.describe Unit, type: :model do
   end
 
   describe 'given unit with no guitar reference' do
-    let!(:store) { create(:store) }
-
     it 'should not be valid' do
       unit = build(:unit, store: store)
       expect(unit).not_to be_valid
@@ -32,9 +28,6 @@ RSpec.describe Unit, type: :model do
   end
 
   describe 'given store with invalid quantity' do
-    let!(:guitar) { create(:guitar) }
-    let!(:store) { create(:store) }
-
     it 'should not be valid' do
       unit = build(:unit, store: store, guitar: guitar, quantity: -1)
       expect(unit).not_to be_valid
