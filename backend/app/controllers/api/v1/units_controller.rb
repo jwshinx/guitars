@@ -9,12 +9,12 @@ module Api
       end
 
       def index
-        units = Unit.all
+        units = Unit.includes(:store, :guitar).all
         render json: UnitsSerializer.new(units).as_json, status: :ok
       end
 
       def show
-        unit = Unit.find(params[:id])
+        unit = Unit.includes(:store, :guitar).find(params[:id])
         render json: UnitSerializer.new(unit).as_json, status: :ok
       end
 

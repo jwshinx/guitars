@@ -9,19 +9,19 @@ module Api
       end
 
       def index
-        guitars = Guitar.all
+        guitars = Guitar.includes(:units, :stores).all
 
         guitars.each{|g| puts "+++> autographed!: #{apply_elvis(g.name)}"}
         render json: GuitarsSerializer.new(guitars).as_json, status: :ok
       end
 
       def show
-        guitar = Guitar.find(params[:id])
+        guitar = Guitar.includes(:units, :stores).find(params[:id])
         render json: GuitarSerializer.new(guitar).as_json, status: :ok
       end
 
       def destroy
-        guitar = Guitar.find(params[:id])
+        guitar = Guitar.includes(:units, :stores).find(params[:id])
         guitar.destroy!
         render json: {}, status: :ok
       end

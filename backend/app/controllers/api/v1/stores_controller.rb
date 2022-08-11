@@ -7,13 +7,13 @@ module Api
       end
 
       def index
-        stores = Store.all
+        stores = Store.includes(:units, :guitars).all
 
         render json: StoresSerializer.new(stores).as_json, status: :ok
       end
 
       def show
-        store = Store.find(params[:id])
+        store = Store.includes(:units, :guitars).find(params[:id])
         render json: StoreSerializer.new(store).as_json, status: :ok
       end
 
