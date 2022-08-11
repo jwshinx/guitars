@@ -10,7 +10,12 @@ class GuitarsSerializer
         name: guitar.name,
         price: guitar.price,
         stores: guitar.stores.each_with_object([]) do |store, arr|
-          arr << { id: store.id, name: store.name, active: store.active }
+          arr << {
+            id: store.id,
+            name: store.name,
+            active: store.active,
+            quantity: store.units.where(guitar_id: guitar.id).first&.quantity
+          }
         end
       }
     end

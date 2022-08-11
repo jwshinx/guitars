@@ -2,6 +2,7 @@ module Api
   module V1
     class UnitsController < ApplicationController
       def create
+        # TODO: param guards should throw exception. eg: string, rather than integer
         # byebug
         unit = Unit.create!(unit_params)
         render json: UnitSerializer.new(unit).as_json, status: :ok
