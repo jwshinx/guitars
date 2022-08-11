@@ -85,7 +85,7 @@ describe 'Store', type: :request do
         expect(response).to have_http_status(:ok)
         data = JSON.parse(response.body)
         expect(data).to eq(
-          {'id' => 1, 'name' => 'the music shop sf', 'active' => true},
+          {'id' => 1, 'name' => 'the music shop sf', 'active' => true, 'guitars' => []},
         )
       end
     end
@@ -114,7 +114,7 @@ describe 'Store', type: :request do
         data = JSON.parse(response.body)
 
         expect(data).to eq(
-          {'id' => 1, 'name' => 'the music shop', 'active' => true},
+          {'id' => 1, 'name' => 'the music shop', 'active' => true, 'guitars' => []},
         )
       end
     end

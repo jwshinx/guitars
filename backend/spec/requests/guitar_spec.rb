@@ -85,7 +85,7 @@ describe 'Guitar', type: :request do
         expect(response).to have_http_status(:ok)
         data = JSON.parse(response.body)
         expect(data).to eq(
-          {'id' => 1, 'name' => 'fender 999', 'price' => 500},
+          {'id' => 1, 'name' => 'fender 999', 'price' => 500, 'stores' => []},
         )
       end
     end
@@ -114,7 +114,7 @@ describe 'Guitar', type: :request do
         data = JSON.parse(response.body)
 
         expect(data).to eq(
-          {'id' => 1, 'name' => 'fender 123', 'price' => 500},
+          {'id' => 1, 'name' => 'fender 123', 'price' => 500, 'stores' => []},
         )
       end
     end
