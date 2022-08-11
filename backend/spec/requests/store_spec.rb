@@ -51,8 +51,8 @@ describe 'Store', type: :request do
       it 'should not destroy store' do
         store = create(:store, name: 'the music shop', active: true)
 
-        randon_number = 333
-        delete "/api/v1/stores/#{store.id + randon_number}"
+        random_number = 333
+        delete "/api/v1/stores/#{store.id + random_number}"
         expect(response).to have_http_status(:not_found)
         data = JSON.parse(response.body)
         expect(data['message']).to match(/Couldn't find Store/)

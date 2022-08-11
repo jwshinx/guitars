@@ -51,8 +51,8 @@ describe 'Guitar', type: :request do
       it 'should not destroy guitar' do
         guitar = create(:guitar, name: 'fender 123', price: 500)
 
-        randon_number = 333
-        delete "/api/v1/guitars/#{guitar.id + randon_number}"
+        random_number = 333
+        delete "/api/v1/guitars/#{guitar.id + random_number}"
         expect(response).to have_http_status(:not_found)
         data = JSON.parse(response.body)
         expect(data['message']).to match(/Couldn't find Guitar/)
@@ -93,7 +93,7 @@ describe 'Guitar', type: :request do
 
   describe 'GET /api/v1/guitars/:id' do
     context 'given invalid id' do
-      it 'should return an' do
+      it 'should return an error' do
         guitar = create(:guitar, name: 'fender 123', price: 500)
 
         random_number = 333
