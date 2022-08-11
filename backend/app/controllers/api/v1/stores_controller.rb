@@ -32,7 +32,7 @@ module Api
       private
 
       def store_params
-        params.require(:store).permit(:name, :active)
+        params.require(:store).permit(:name, :active, :guitar_ids => [])
       end
     end
   end

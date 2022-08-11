@@ -35,7 +35,7 @@ module Api
       private
 
       def guitar_params
-        params.require(:guitar).permit(:name, :price)
+        params.require(:guitar).permit(:name, :price, :store_ids => [])
       end
     end
   end
