@@ -1,7 +1,7 @@
 module Api
   module V1
     class GuitarsController < ApplicationController
-      include Autographable
+      include Loggable
 
       def create
         guitar = Guitar.create!(guitar_params)
@@ -9,14 +9,14 @@ module Api
       end
 
       def index
+        puts log_params(params) unless Rails.env == 'test'
         guitars = Guitar.includes(:units, :stores).all
-
-        guitars.each{|g| puts "+++> autographed!: #{apply_elvis(g.name)}"}
         render json: GuitarsSerializer.new(guitars).as_json, status: :ok
       end
 
       def show
         guitar = Guitar.includes(:units, :stores).find(params[:id])
+        puts guitar.autographed unless Rails.env == 'test'
         render json: GuitarSerializer.new(guitar).as_json, status: :ok
       end
 
