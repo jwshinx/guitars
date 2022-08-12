@@ -1,6 +1,7 @@
 class StoreSerializer
-  def initialize(store)
+  def initialize(store, owner_name = nil)
     @store = store
+    @owner_name = owner_name 
   end
 
   def as_json
@@ -8,6 +9,7 @@ class StoreSerializer
       id: store.id,
       name: store.name,
       active: store.active,
+      owner_name: owner_name || 'N/A',
       guitars: store.guitars.each_with_object([]) do |guitar, arr|
         arr << { 
           id: guitar.id,
@@ -21,5 +23,5 @@ class StoreSerializer
 
   private
 
-  attr_reader :store
+  attr_reader :store, :owner_name
 end

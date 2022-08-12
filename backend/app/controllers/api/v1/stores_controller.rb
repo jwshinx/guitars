@@ -14,7 +14,9 @@ module Api
 
       def show
         store = Store.includes(:units, :guitars).find(params[:id])
-        render json: StoreSerializer.new(store).as_json, status: :ok
+        clear_cache = false
+        owner_name, response_errors = Jsonplaceholder::Owner.random({}, clear_cache, store.id)
+        render json: StoreSerializer.new(store, owner_name).as_json, status: :ok
       end
 
       def destroy
